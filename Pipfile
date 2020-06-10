@@ -1,0 +1,24 @@
+[[source]]
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+flask = "*"
+flask-sqlalchemy = "*"
+flask-debugtoolbar = "*"
+flask-mail = "*"
+flask-migrate = "*"
+python-dotenv = "*"
+flask-bcrypt = "*"
+flask-wtf = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"
+
+[packages.flask-fanstatic]
+editable = true
+git = "https://github.com/neilkatin/flask-fanstatic"
+ref = "werkzeug_imports"

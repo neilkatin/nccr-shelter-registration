@@ -1,0 +1,65 @@
+
+{# render a WTF field #}
+{% macro render_field(field) %}
+
+
+{%- if field.type == 'CSRFTokenField' -%}
+  {{ field }}
+{%- elif field.type == 'SubmitField' -%}
+  {% if field.description %}
+    <p>{{ field.description }}</p>
+  {% endif %}
+  <p><input type='submit' value='{{ field.label.text }}' /></p>
+{%- else -%}
+
+  {%- if field.type == 'BooleanField' -%}
+
+    <div class='form-check form-check-inline'>
+      <label class='form-check-label'>
+        {{ field(placeholder=field.description, class_='form-check-input', **kwargs)|safe }}
+        {{ field.label.text }}
+      </label>
+    </div>
+
+  {%- elif field.type == 'RadioField' -%}
+
+    <div class='form-inline'>
+      <div class='control-group custom-control-inline'>
+
+        {%- for subfield in field -%}
+          
+          <div class='form-check form-check-inline'>
+            {{ subfield(placeholder=subfield.description, class_='form-check-input', **kwargs)|safe }}
+            <label class='form-check-label' for='{{ subfield.label.field_id }}'>{{ subfield.label.text }}</label>
+          </div>
+
+        {%- endfor -%}
+        <div class='form-check form-check-inline>
+          <label class='form-check-label'>{{ field.label.text }}</label>
+        </div>
+      </div>
+    </div>
+  {%- else -%}
+
+    <div class='form-group border row'>
+      <div class='col-md-4'>
+      <label for='{{ field.label.field_id }}' class='mr-sm-2'>{{ field.label.text }}</label>
+      </div>
+      <div class='col-md-8'>
+      {{ field(placeholder=field.description, width='100%', class_='form-control mr-sm-2 mb-2', **kwargs)|safe }}
+
+      {% if field.errors %}
+        <div class='alert alert-danger' role="alert">
+          {% for error in field.errors %}
+            <p>{{ error|e }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+        </div>
+    </div>
+
+  {%- endif -%}
+{%- endif -%}
+
+
+{% endmacro %}
