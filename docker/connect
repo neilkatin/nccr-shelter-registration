@@ -1,0 +1,7 @@
+#! /bin/bash
+
+#
+# bootstrap docker mysql on windows
+#
+
+winpty docker exec -it shelterreg mysql "$@"
