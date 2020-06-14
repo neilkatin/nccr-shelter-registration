@@ -38,13 +38,9 @@ Shelter Registration
 
 <div class='container-md border'>
   <form action="" method="post" novalidate class=''>
-    <div class='reg_form'>
       {% for field in form %}
         {{ fm.render_field(field) }}
       {% endfor %}
-
-    </div>
-
   </form>
 
 </div>
@@ -72,19 +68,11 @@ yes_no_choices = [ ('yes', 'Yes'), ('no', 'No') ]
 
 class ShelterRegForm(FlaskForm):
 
+    first_name = StringField(u'First Name')
     family_name = StringField(u'Family Name (Last Name)')
-    pre_disaster_address = StringField(u'Pre Disaster Address')
-    post_disaster_address = StringField(u'Post Disaster Address (if different)')
     primary_phone = StringField(u'Primary Phone')
-    other_phone = StringField(u'Other Phone')
     email = StringField(u'Email')
     primary_language = StringField(u'Primary Language')
-    alternate_english_speaker = StringField(u'If not English, Family Member Present Who Speaks English')
-    method_of_transportation = StringField(u'Method of Transportation')
-    license_plate = StringField(u'If Personal Vehicle: State + License Plate (for security purposes only)')
-    required_to_register = RadioField(u'Someone in the household is required by law to register with a state or local government agency', choices=yes_no_choices)
-    veteran_in_household = RadioField(u'Someone in the household is a veteran or active military', choices=yes_no_choices)
-    agree_to_sharing = RadioField(u'I agree to have my information shared with other agencies providing disaster relief services', choices=yes_no_choices)
     submit = SubmitField(u'Register')
     
     
