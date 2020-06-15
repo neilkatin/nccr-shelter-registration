@@ -40,7 +40,7 @@ def create_app(test_config=None):
     #app.config.from_object('config')
     app.config.from_pyfile('config.py')
 
-    log.debug(f"value of config[SERVER_NAME] is '{ app.config['SERVER_NAME'] }'")
+    #log.debug(f"value of config[SERVER_NAME] is '{ app.config['SERVER_NAME'] }'")
 
 
     if test_config is None:
@@ -67,6 +67,12 @@ def create_app(test_config=None):
 
     from . import views
     views.init_app(app)
+
+    from . import db_cmd
+    db_cmd.init_app(app)
+
+    from . import model
+    model.init_app(app)
 
     #from . import auth
     #auth.init_security(app, db_app.db)
