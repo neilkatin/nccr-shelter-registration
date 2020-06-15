@@ -31,3 +31,6 @@ docker run \
     --volume "$VOLUME:/var/lib/mysql" \
     -e MYSQL_ALLOW_EMPTY_PASSWORD=1 \
     -d "$TAG"
+
+$DIR/connect --execute "SET GLOBAL time_zone = 'UTC'"
+
